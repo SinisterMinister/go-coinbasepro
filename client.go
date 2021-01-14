@@ -110,6 +110,9 @@ func (c *Client) request(method string, url string,
 		return res, err
 	}
 
+	// Use Opaque URL to prevent encoding of client IDs
+	req.URL.Opaque = url
+
 	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
 
 	// XXX: Sandbox time is off right now
