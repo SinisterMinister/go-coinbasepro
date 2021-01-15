@@ -110,8 +110,8 @@ func (c *Client) request(method string, url string,
 		return res, err
 	}
 
-	// Use Opaque URL to prevent encoding of client IDs
-	req.URL.Opaque = url
+	// Use Opaque URL to prevent encoding of client IDs in the path
+	req.URL.Opaque = url + "?" + req.URL.Query().Encode()
 
 	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
 
